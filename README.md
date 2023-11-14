@@ -15,7 +15,7 @@ Automatically describe images sent by users on popular media platforms. Incredib
 **BOT SETUP SUPPORT AND DEMO SERVER:** [Join Here](https://discord.gg/WvAHXDMS7Q)
 
 # Demo
-![Demo](https://im2.ezgif.com/tmp/ezgif-2-9f66aa0e73.gif)
+![Demo](https://i.imgur.com/NXNb7a6.png)
 
 # Setup
 Python 3.9 and above are supported
