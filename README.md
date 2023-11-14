@@ -1,4 +1,4 @@
-<h1 align="center">Describer</h1>
+<h1 align="center">Described</h1>
 <p align="center">An open-source system for automatically describing images sent by users on popular media platforms. Currently supports Discord, support for Slack, Messenger, Telegram, other platforms coming soon!
 
 <center>
