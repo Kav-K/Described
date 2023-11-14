@@ -3,8 +3,8 @@
 
 <center>
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Kav-K/Describer/graphs/commit-activity)  
-[![GitHub license](https://img.shields.io/github/license/Kav-K/Describer)](https://github.com/Kav-K/Describer/blob/main/LICENSE)  
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Kav-K/Described/graphs/commit-activity)  
+[![GitHub license](https://img.shields.io/github/license/Kav-K/Described)](https://github.com/Kav-K/Described/blob/main/LICENSE)  
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 </center>
