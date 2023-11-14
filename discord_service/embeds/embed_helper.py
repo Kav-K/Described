@@ -2,6 +2,7 @@ from typing import List
 
 import discord
 
+
 class EmbedStatics:
     def __init__(self):
         pass
@@ -37,7 +38,8 @@ class EmbedStatics:
     def build_status_set_failure_embed(message):
         embed = discord.Embed(
             title="Describer",
-            description=f"There was an error changing the image descriptions status for this server: " + message,
+            description=f"There was an error changing the image descriptions status for this server: "
+            + message,
             color=discord.Color.red(),
         )
         embed.set_thumbnail(url="https://i.imgur.com/hbdBZfG.png")
@@ -54,13 +56,20 @@ class EmbedStatics:
         return embed
 
     @staticmethod
-    def build_described_image_embed(message: discord.Message, image_url: str, description: str):
+    def build_described_image_embed(
+        message: discord.Message, image_url: str, description: str
+    ):
         embed = discord.Embed(
             title=f"{message.author.display_name} sent an image that was automatically described",
             description=f"{description}",
             color=discord.Color.light_gray(),
         )
         embed.set_thumbnail(url=image_url)
-        embed.set_author(name=message.author.display_name, icon_url=message.author.avatar.url)
-        embed.set_footer(text=f"Automatically described for an image sent by {message.author.display_name}", icon_url=message.author.avatar.url)
+        embed.set_author(
+            name=message.author.display_name, icon_url=message.author.avatar.url
+        )
+        embed.set_footer(
+            text=f"Automatically described for an image sent by {message.author.display_name}",
+            icon_url=message.author.avatar.url,
+        )
         return embed

@@ -13,8 +13,8 @@ def backoff_handler_request(details):
         f"{details['exception'].args[0]}"
     )
 
-class OpenAIExecutor:
 
+class OpenAIExecutor:
     def __init__(self):
         self.openai_api_key = EnvService.get_openai_api_key()
         try:
@@ -35,16 +35,17 @@ class OpenAIExecutor:
         self,
         image_urls,
     ):
-        messages = [
-            {"role": "system", "content": self.ANALYSIS_PRETEXT}
-        ]
+        messages = [{"role": "system", "content": self.ANALYSIS_PRETEXT}]
         for image_url in image_urls:
             messages.append(
                 {
                     "role": "user",
                     "content": [
-                        {"type": "image_url", "image_url": {"url": image_url, "detail": "high"}}
-                    ]
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": image_url, "detail": "high"},
+                        }
+                    ],
                 }
             )
 
@@ -58,9 +59,7 @@ class OpenAIExecutor:
                 "max_tokens": 2048,
             }
 
-            headers = {
-                "Authorization": f"Bearer {self.openai_api_key}"
-            }
+            headers = {"Authorization": f"Bearer {self.openai_api_key}"}
 
             async with session.post(
                 "https://api.openai.com/v1/chat/completions",
@@ -73,4 +72,3 @@ class OpenAIExecutor:
                 print(f"Response -> {response}")
 
                 return response["choices"][0]["message"]["content"]
-

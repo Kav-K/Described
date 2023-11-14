@@ -6,6 +6,7 @@ from typing import Union
 
 from dotenv import load_dotenv
 
+
 def app_root_path():
     app_path = Path(sys.argv[0]).resolve()
     try:
@@ -109,7 +110,9 @@ class EnvService:
             )
 
         described_channels = (
-            described_channels.split(",") if "," in described_channels else [described_channels]
+            described_channels.split(",")
+            if "," in described_channels
+            else [described_channels]
         )
         return described_channels
 

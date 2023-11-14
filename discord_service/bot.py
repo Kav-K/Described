@@ -38,6 +38,7 @@ activity = discord.Activity(
 )
 bot = discord.Bot(intents=discord.Intents.all(), command_prefix="!", activity=activity)
 
+
 @bot.event  # Using self gives u
 async def on_ready():  # I can make self optional by
     print("We have logged in as {0.user}".format(bot))
@@ -116,7 +117,6 @@ def init():
             print(f"Wrote PID to file {PID_FILE}")
             f.close()
     try:
-
         asyncio.get_event_loop().run_until_complete(main())
     except KeyboardInterrupt:
         print("Caught keyboard interrupt, killing and removing PID")

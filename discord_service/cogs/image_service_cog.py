@@ -14,7 +14,6 @@ from services.openai_service import OpenAIExecutor
 
 
 class ServerInformation:
-
     def __init__(self, status: bool = False):
         self.status = status
 
@@ -30,10 +29,8 @@ class ImageService(discord.Cog, name="ImageService"):
             directory_path.mkdir(parents=True, exist_ok=True)
 
             async with aiofiles.open(
-                    EnvService.save_path()
-                    / "pickles"
-                    / "server_information.pickle",
-                    "wb",
+                EnvService.save_path() / "pickles" / "server_information.pickle",
+                "wb",
             ) as f:
                 await f.write(pickle.dumps(self.server_information))
                 return True
@@ -43,8 +40,8 @@ class ImageService(discord.Cog, name="ImageService"):
             return False
 
     def __init__(
-            self,
-            bot,
+        self,
+        bot,
     ):
         super().__init__()
         self.bot = bot
@@ -53,8 +50,8 @@ class ImageService(discord.Cog, name="ImageService"):
 
         try:
             with open(
-                    EnvService.save_path() / "pickles" / "server_information.pickle",
-                    "rb",
+                EnvService.save_path() / "pickles" / "server_information.pickle",
+                "rb",
             ) as f:
                 self.server_information = pickle.load(f)
                 print("Loaded server information pickle.")
@@ -79,17 +76,28 @@ class ImageService(discord.Cog, name="ImageService"):
     async def described_command(self, ctx: discord.ApplicationContext, status: str):
         """Command handler. Given a string it generates an output that's fitting for image generation"""
         if status == "on" or status == "off":
-            if await self.change_guild_status(ctx.guild_id, True if status == "on" else False):
+            if await self.change_guild_status(
+                ctx.guild_id, True if status == "on" else False
+            ):
                 await ctx.respond(
-                    embed=EmbedStatics.build_status_change_success_embed(self.server_information[ctx.guild_id].status))
+                    embed=EmbedStatics.build_status_change_success_embed(
+                        self.server_information[ctx.guild_id].status
+                    )
+                )
                 return
         else:
             await ctx.respond(
-                embed=EmbedStatics.build_status_display_embed(self.server_information[ctx.guild_id].status))
+                embed=EmbedStatics.build_status_display_embed(
+                    self.server_information[ctx.guild_id].status
+                )
+            )
             return
 
-        await ctx.respond(embed=EmbedStatics.build_status_set_failure_embed(
-            "There was an error changing the status of image descriptions for this server."))
+        await ctx.respond(
+            embed=EmbedStatics.build_status_set_failure_embed(
+                "There was an error changing the status of image descriptions for this server."
+            )
+        )
 
     @discord.Cog.listener()
     async def on_message(self, message: discord.Message):
@@ -125,7 +133,10 @@ class ImageService(discord.Cog, name="ImageService"):
                     image_urls.append(_file.url)
 
         if len(image_urls) > 0:
-            print("Sending an image description request for message URL: " + message.jump_url)
+            print(
+                "Sending an image description request for message URL: "
+                + message.jump_url
+            )
 
             # Add a reaction to the message to denote processing
             try:
@@ -137,11 +148,19 @@ class ImageService(discord.Cog, name="ImageService"):
             for url in image_urls:
                 print("Processing " + str(url))
                 try:
-                    response = await self.openai_service.send_image_evaluation_request([url])
-                    await message.reply(embed=EmbedStatics.build_described_image_embed(message, url, response))
+                    response = await self.openai_service.send_image_evaluation_request(
+                        [url]
+                    )
+                    await message.reply(
+                        embed=EmbedStatics.build_described_image_embed(
+                            message, url, response
+                        )
+                    )
                 except Exception as e:
                     traceback.print_exc()
-                    await message.reply(embed=EmbedStatics.build_image_analysis_failure_embed(str(e)))
+                    await message.reply(
+                        embed=EmbedStatics.build_image_analysis_failure_embed(str(e))
+                    )
 
             try:
                 await message.delete()
